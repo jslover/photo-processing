@@ -1,89 +1,126 @@
-﻿<!DOCTYPE html >
+﻿<!DOCTYPE html />
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>a</title>
+    <meta charset="utf-8" />
+    <title>图片处理组件-photo-processing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no,target-densitydpi=medium-dpi">
+    <link href="http://jslover.github.com/style/main.css" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://jslover.github.com/script/common.js" type="text/javascript"></script>
+    <!--DEMO引用的组件样式-->
     <link href="style/photo-processing.css" rel="stylesheet" type="text/css" />
     <style>
         #imgResize, #divResize { position: absolute; padding: 0; margin: 0; }
         #divResize { display: none; z-index: 2; }
     </style>
-</head>
-<body style="padding: 0;">
-    <div id="hd">
-        <h1>
-            <div id="scaleBar">
-                显示比例:<label>
-                </label>
-                %</div>
-            图像处理</h1>
-    </div>
-    <div id="bd">
-        <div id="sidebar">
-            <ul>
-                <li data-action="cut"><a href="#" id="btnCut">裁剪</a>
-                    <p class="action-bar">
-                        <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
-                    </p>
-                </li>
-                <li data-action="resize"><a href="#" id="btnResize">缩放</a>
-                    <p class="action-bar">
-                        <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
-                    </p>
-                </li>
-                <li data-action="rotate">
-                    <p class="rotate-bar">
-                        <a href="#" id="btnLeft">左旋</a><a href="#" id="btnRight">右转</a><span class="clear"></span></p>
-                    <p class="action-bar">
-                        <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
-                    </p>
-                </li>
-                <li data-action="logo" class="li-logo"><a href="#" id="btnLogo">水印</a>
-                    <div class="action-bar logo-bar">
-                        <p>
-                            文本：<input type="text" style="width: 120px" maxlength="15" id="logoText" /></p>                       
-                        <p>
-                            字体：<select id="logoFont">
-                                <option value="宋体">宋体</option>
-                                <option value="幼圆">幼圆</option>
-                                <option value="楷体">楷体</option>
-                                <option value="隶书">隶书</option>
-                                <option value="微软雅黑">雅黑</option>
-                            </select>
-                            字号：<select id="logoFontSize" style="width:35px">
-                                <option value="18">大</option>
-                                <option value="14" selected="selected">中</option>
-                                <option value="10" >小</option>   
-                            </select>
-                        </p>
-                        <p style="margin-bottom: 5px;" id="logoPosition">
-                            位置：<label>
-                                <input type="radio" name="logo" value="LB" />左下</label>
-                            <label>
-                                <input type="radio" name="logo" value="CB" />中下</label>
-                            <label>
-                                <input type="radio" checked="checked" name="logo" value="RB" />右下</label>
-                        </p>
-                        <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div id="main">
-            <div id="currImg">
-                <img style="display: none;" />
-            </div>
-            <div id="resizeImg" style="display: none;">
-                <img id="imgResize" src="" />
-            </div>
-            <div id="loadding">
-                加载图片...</div>
-        </div>
-    </div>
-    <div id="ft">
-    </div>
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <!--DEMO引用的组件js-->
     <script src="script/jquery.Jcrop.min.js" type="text/javascript"></script>
     <script src="script/photo-processing.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="wrap">
+            <h1>
+                图片处理组件</h1>
+            <p>
+                http://jslover.github.com/photo-processing/
+            </p>
+            <ul>
+                <li><a href="http://jslover.github.com">返回首页</a></li>
+                <li><a href="https://github.com/jslover/photo-processing">下载源码</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="contenter">
+        <div class="wrap">
+            <br />
+            <h3>
+                demo1:默认</h3>
+            <div class="demo" style="height: 500px">
+                <div id="hd">
+                    <h1>
+                        <div id="scaleBar">
+                            显示比例:<label>
+                            </label>
+                            %</div>
+                        图像处理</h1>
+                </div>
+                <div id="bd">
+                    <div id="sidebar">
+                        <ul>
+                            <li data-action="cut"><a href="#" id="btnCut">裁剪</a>
+                                <p class="action-bar">
+                                    <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
+                                </p>
+                            </li>
+                            <li data-action="resize"><a href="#" id="btnResize">缩放</a>
+                                <p class="action-bar">
+                                    <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
+                                </p>
+                            </li>
+                            <li data-action="rotate">
+                                <p class="rotate-bar">
+                                    <a href="#" id="btnLeft">左旋</a><a href="#" id="btnRight">右转</a><span class="clear"></span></p>
+                                <p class="action-bar">
+                                    <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
+                                </p>
+                            </li>
+                            <li data-action="logo" class="li-logo"><a href="#" id="btnLogo">水印</a>
+                                <div class="action-bar logo-bar">
+                                    <p>
+                                        文本：<input type="text" style="width: 120px" maxlength="15" id="logoText" /></p>
+                                    <p>
+                                        字体：<select id="logoFont">
+                                            <option value="宋体">宋体</option>
+                                            <option value="幼圆">幼圆</option>
+                                            <option value="楷体">楷体</option>
+                                            <option value="隶书">隶书</option>
+                                            <option value="微软雅黑">雅黑</option>
+                                        </select>
+                                        字号：<select id="logoFontSize" style="width: 35px">
+                                            <option value="18">大</option>
+                                            <option value="14" selected="selected">中</option>
+                                            <option value="10">小</option>
+                                        </select>
+                                    </p>
+                                    <p style="margin-bottom: 5px;" id="logoPosition">
+                                        位置：<label>
+                                            <input type="radio" name="logo" value="LB" />左下</label>
+                                        <label>
+                                            <input type="radio" name="logo" value="CB" />中下</label>
+                                        <label>
+                                            <input type="radio" checked="checked" name="logo" value="RB" />右下</label>
+                                    </p>
+                                    <a href="#" class="btn-ok">确认</a> <a href="#" class="btn-cancel">取消</a><span class="clear"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="main">
+                        <div id="currImg">
+                            <img style="display: none;" />
+                        </div>
+                        <div id="resizeImg" style="display: none;">
+                            <img id="imgResize" src="" />
+                        </div>
+                        <div id="loadding">
+                            加载图片...</div>
+                    </div>
+                </div>
+                <div id="ft">
+                </div>
+                <br />
+            </div>
+            <br />
+        </div>
+    </div>
+    <div id="footer">
+        <div class="wrap">
+            <p>
+                <a href="http://jslover.com">http://jslover.com</a></p>
+            <p>
+                <a href="http://jslover.github.com">http://jslover.github.com</a></p>
+        </div>
+    </div>
 </body>
 </html>

@@ -64,7 +64,7 @@
     PP.Main = {
         init: function () {
             var _this = this;
-            var _h = $(window).height();
+            var _h = $("#hd").parent().height();
             //自适应高度
             $("#sidebar").css('height', _h - 30);
             $("#main").css('height', _h - 30);
@@ -415,7 +415,8 @@
         }
     };
 
-
-    //初始化
-    PP.Main.init();
+    $(function () {
+        //初始化
+        PP.Main.init();
+    });
 })(jQuery);
